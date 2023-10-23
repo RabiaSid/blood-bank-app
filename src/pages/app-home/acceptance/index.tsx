@@ -4,10 +4,14 @@ import DropDown from "../../../components/input/dropdown";
 import { MenuItem } from "@mui/material";
 import CustomTableRow from "../../../components/table/table-row";
 import CustomTableContainer from "../../../components/table/table-container";
+import { useSelector } from "react-redux";
 
 export default function Acceptance() {
+  const userData = useSelector((state: any) => state.user);
   const [acceptanceList, setAcceptanceList] = useState<any>([]);
-  const [selectedBloodGroup, setSelectedBloodGroup] = useState(""); // State to store selected blood group
+  const [selectedBloodGroup, setSelectedBloodGroup] = useState(
+    userData.bloodGroup
+  );
 
   const BloodGroups = [
     { value: "A", label: "A" },
@@ -31,10 +35,8 @@ export default function Acceptance() {
     GetacceptanceList();
   }, []);
 
-  // Function to filter the acceptance list based on the selected blood group
   const filterAcceptanceList = () => {
     if (selectedBloodGroup === "") {
-      // If no blood group is selected, return the full list
       return acceptanceList;
     }
     return acceptanceList.filter((x: any) =>
@@ -42,10 +44,15 @@ export default function Acceptance() {
     );
   };
 
-  // Event handler for blood group selection
   const handleBloodGroupChange = (event: any) => {
     setSelectedBloodGroup(event.target.value);
   };
+
+  useEffect(() => {
+    if (userData.bloodGroup) {
+      setSelectedBloodGroup(userData.bloodGroup);
+    }
+  }, [userData.bloodGroup]);
 
   return (
     <>

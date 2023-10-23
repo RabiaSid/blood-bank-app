@@ -4,11 +4,10 @@ import { Drawer } from "antd";
 import InputField from "../input/Input-field";
 import PrimaryButton from "../button/primary-button";
 import { useNavigate } from "react-router-dom";
-// import { fbSignUp } from "../../../config/firebase/firebase-methods";
 import DropDown from "../input/dropdown";
 import MenuItem from "@mui/material/MenuItem";
 import CheckboxLabels from "../check-box";
-import { fbSignUp, imgDB } from "../../config/firebase/firebase-methods";
+import { fbAdd, fbSignUp, imgDB } from "../../config/firebase/firebase-methods";
 import { useDispatch } from "react-redux";
 import { add } from "../../config/redux/reducers/userSlice";
 import { v4 } from "uuid";
@@ -76,10 +75,11 @@ export default function AppDrawer() {
 
   let signUpUser = () => {
     console.log("Model data:", model);
+    dispatch(add({ ...model }))
     fbSignUp(model)
       .then((res: any) => {
         console.log("Response data:", res);
-        dispatch(add({ ...res }));
+        console.log(`signup successfull`)
         navigate("/app-home");
       })
       .catch((err) => {

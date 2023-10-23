@@ -22,11 +22,9 @@ export default function Donor() {
   };
 
   let donorAdd = () => {
-    // Save the data from the model into Firebase
     fbAdd("donorList", model)
       .then((res: any) => {
         console.log("Data saved to Firebase:", res);
-        // Clear the model
         setModel({});
       })
       .catch((err) => {

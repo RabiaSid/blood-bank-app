@@ -23,7 +23,6 @@ function ProtectedRoute({ element, ...rest }: ProtectedRouteProps) {
   }, []);
 
   if (isAuthenticated === null) {
-    // Loading state
     return null;
   }
 
