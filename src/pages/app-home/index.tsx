@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 import IconButton from "../../components/button/icon-button";
 import Donor from "./donor";
@@ -20,24 +20,37 @@ export default function AppHome() {
 
   return (
     <>
-      <div className="row m-0 p-0 d-flex justify-content-center align-items-between" style={{ minHeight: "100vh" }}>
-        <div className="col-12 py-1 shadow-sm" style={{ height: "10vh", background: `rgba(255, 220, 178, 0.2)` }}>
+      <div
+        className="row m-0 p-0 d-flex justify-content-center align-items-between"
+        style={{ minHeight: "100vh" }}
+      >
+        <div
+          className="col-12 py-1 shadow-sm"
+          style={{ height: "10vh", background: `rgba(255, 220, 178, 0.2)` }}
+        >
           <div className="row m-0 p-0 d-flex justify-content-between align-items-center">
             <div className="col-4">
-              <img src={logo} style={{ width: "auto", height: "4vh" }} /><h3>Blood Bank App</h3>
+              <img src={logo} style={{ width: "auto", height: "4vh" }} />
+              <h3>Blood Bank App</h3>
             </div>
-            <div className="col-4">
+            <div className="col-3">
               <div className="row m-0 p-0">
-                <div className="col-6">{userData?.firstName}</div>
+                <div className="col-6 text-center py-2">
+                  <h3>
+                    {userData?.firstName &&
+                      userData.firstName.charAt(0).toUpperCase() +
+                        userData.firstName.slice(1)}_{userData.lastName}
+                  </h3>
+                </div>
                 <div className="col-6">
                   {userData?.Image && (
                     <img
                       src={userData.Image}
                       style={{
-                        border: "1px solid green",
+                        border: "2px solid black",
                         width: "35px",
                         height: "35px",
-                        borderRadius: "10px",
+                        borderRadius: "20px",
                       }}
                     />
                   )}
@@ -71,7 +84,7 @@ export default function AppHome() {
         )}
 
         {selectedSection === "acceptance" && (
-          <div className="col-12" style={{ minHeight: "90vh" }}>
+          <div className="col-12" style={{ minHeight: "80vh" }}>
             <Acceptance />
           </div>
         )}

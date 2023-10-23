@@ -4,6 +4,7 @@ type UserState = {
   isLogin: boolean;
   id: number;
   firstName: string;
+  lastName: string;
   Image: string | null;
   email: string;
   cnic: string;
@@ -15,6 +16,7 @@ let initialState: UserState = {
   isLogin: false,
   id: 1,
   firstName: "abc",
+  lastName: "def",
   Image: null,
   email: "abc",
   cnic: "00000-000000-0",
@@ -35,6 +37,7 @@ export const UserSlice = createSlice({
       state.isLogin = true;
       state.id = action.payload.id;
       state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
       state.Image = action.payload.Image;
       state.email = action.payload.email;
       state.cnic = action.payload.cnic;

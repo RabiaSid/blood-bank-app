@@ -45,7 +45,7 @@ export default function SignIn() {
         <div
           className="w-50 p-5 rounded-lg"
           style={{
-            background: `rgba(179, 214, 252,.2)`,
+            background: `rgba(255, 220, 178, 0.2)`,
           }}
         >
           <div className="py-3">

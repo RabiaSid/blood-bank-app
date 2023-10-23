@@ -7,11 +7,9 @@ import CustomTableContainer from "../../../components/table/table-container";
 import { useSelector } from "react-redux";
 
 export default function Acceptance() {
-  const userData = useSelector((state: any) => state.user);
+  const x = useSelector((state: any) => state.user);
   const [acceptanceList, setAcceptanceList] = useState<any>([]);
-  const [selectedBloodGroup, setSelectedBloodGroup] = useState(
-    userData.bloodGroup
-  );
+  const [selectedBloodGroup, setSelectedBloodGroup] = useState(x.bloodGroup);
 
   const BloodGroups = [
     { value: "A", label: "A" },
@@ -49,53 +47,61 @@ export default function Acceptance() {
   };
 
   useEffect(() => {
-    if (userData.bloodGroup) {
-      setSelectedBloodGroup(userData.bloodGroup);
+    if (x.bloodGroup) {
+      setSelectedBloodGroup(x.bloodGroup);
     }
-  }, [userData.bloodGroup]);
+  }, [x.bloodGroup]);
 
   return (
     <>
-      <div>
-        <DropDown
-          HeaderValue="Blood Group"
-          SelectValue={selectedBloodGroup}
-          SelectOnChange={handleBloodGroupChange}
-        >
-          {BloodGroups.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </DropDown>
-      </div>
+      <div className="row m-0 p-0 ">
+        <div className="col-4 ">
+          <DropDown
+            HeaderValue="Blood Group"
+            SelectValue={selectedBloodGroup}
+            SelectOnChange={handleBloodGroupChange}
+          >
+            {BloodGroups.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </DropDown>
+        </div>
 
-      <div>
-        <CustomTableContainer
-          cols={[
-            {
-              heading: "Quiz",
-              key: "quiz",
-            },
-            {
-              heading: "Point",
-              key: "point",
-            },
-            {
-              heading: "Total",
-              key: "total",
-            },
-          ]}
-        >
-          {filterAcceptanceList().map((x: any, i: any) => (
-            <CustomTableRow
-              key={x.id}
-              column1={i + 1}
-              column2={x.firstName}
-              column3={x.bloodGroup}
-            />
-          ))}
-        </CustomTableContainer>
+        <div className="col-12">
+          <CustomTableContainer
+            cols={[
+              {
+                heading: "Quiz",
+                key: "quiz",
+              },
+              {
+                heading: "Point",
+                key: "point",
+              },
+              {
+                heading: "Total",
+                key: "total",
+              },
+            ]}
+          >
+            {filterAcceptanceList().map((x: any, i: any) => (
+              <CustomTableRow
+                key={x.id}
+                column1={i + 1}
+                column2={`${
+                  x?.firstName &&
+                  x.firstName.charAt(0).toUpperCase() + x.firstName.slice(1)
+                }  ${
+                  x?.lastName &&
+                  x.lastName.charAt(0).toUpperCase() + x.lastName.slice(1)
+                }`}
+                column3={x.bloodGroup}
+              />
+            ))}
+          </CustomTableContainer>
+        </div>
       </div>
     </>
   );

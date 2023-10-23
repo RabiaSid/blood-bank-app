@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import DisableInput from "../../../components/input/disable-input";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ export default function Donor() {
   const userData = useSelector((a: any) => a.user);
   const [model, setModel] = useState<any>({
     firstName: userData.firstName,
+    lastName: userData.lastName,
     email: userData.email,
     cnic: userData.cnic,
     bloodGroup: userData.bloodGroup,
@@ -37,9 +38,23 @@ export default function Donor() {
       <div className="row m-0 p-0">
         <div className="col-4">
           <DisableInput
-            value={userData.firstName || model.firstName}
+            value={
+              (userData?.firstName &&
+              userData.firstName.charAt(0).toUpperCase() +
+              userData.firstName.slice(1)) ||
+              model.firstName
+            }
+            // value={userData.firstName || model.firstName}
+            
             onChange={(e: any) => fillModel("firstName", e.target.value)}
             label="First Name"
+          />
+        </div>
+        <div className="col-4">
+          <DisableInput
+            value={userData.lastName || model.lastName}
+            onChange={(e: any) => fillModel("firstName", e.target.value)}
+            label="Last Name"
           />
         </div>
         <div className="col-4">
@@ -65,7 +80,7 @@ export default function Donor() {
         </div>
         <div className="col-12">
           <div className="row m-0 p-0">
-            <div className="col-4">
+            <div className="col-4 ps-0 pe-4">
               <IconButton label="Donate" onClick={donorAdd} />
             </div>
           </div>
