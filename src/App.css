@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+#root {
+  text-size-adjust: 100%;
+  letter-spacing: normal;
+  background-color: white;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  /* height: auto; */
+}
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.item_active {
+  background-color: #313131 !important;
+  color: #D4D4D4 !important;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.item_active:hover{
+/* border-radius: 8px !important; */
+background: var(--transparency-success, rgba(0, 176, 116, 0.15)) !important;
+color: #00B074 !important
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.item_active:hover .item_active_icon{
+color: #00B074 !important
 }
-
-.App-link {
-  color: #61dafb;
+.item_active:focus{
+/* border-radius: 8px !important; */
+background: var(--transparency-success, rgba(0, 176, 116, 0.15)) !important;
+color: #00B074 !important
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.item_active:focus .item_active_icon{
+color: #00B074 !important
+}
+/* primary btn css */
+.btn_primary{
+	background: #2d2d2d
+}
+.btn_primary:hover{
+	background: #721414 !important
+}
+.Mui_Input:hover{
+  color: #00B074 !important
+}
+.Mui_Input:focus{
+  color: #00B074 !important
 }
