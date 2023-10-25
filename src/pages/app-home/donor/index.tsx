@@ -44,7 +44,6 @@ export default function Donor() {
               userData.firstName.slice(1)) ||
               model.firstName
             }
-            // value={userData.firstName || model.firstName}
             
             onChange={(e: any) => fillModel("firstName", e.target.value)}
             label="First Name"
