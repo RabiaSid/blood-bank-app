@@ -64,6 +64,10 @@ export let fbSignUp = (body: any) => {
     }
   });
 };
+
+
+
+
 export let fbAuth = () => {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
